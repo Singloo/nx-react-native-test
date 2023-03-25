@@ -6,7 +6,7 @@ module.exports = (async () => {
   const {
     resolver: { sourceExts, assetExts },
   } = await getDefaultConfig();
-  return withNxMetro(
+  const config = withNxMetro(
     {
       transformer: {
         getTransformOptions: async () => ({
@@ -35,4 +35,6 @@ module.exports = (async () => {
       watchFolders: [],
     }
   );
+
+  return config;
 })();
