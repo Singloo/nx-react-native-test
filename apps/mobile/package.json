@@ -13,6 +13,7 @@
     "react-native-config": "*",
     "react-native-svg": "*",
     "styled-components": "^5.3.9",
-    "twrnc": "^3.6.0"
+    "twrnc": "^3.6.0",
+    "metro-resolver": "*"
   }
 }

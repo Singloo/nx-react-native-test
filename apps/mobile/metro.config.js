@@ -2,7 +2,7 @@ const { withNxMetro } = require('@nrwl/react-native');
 const { getDefaultConfig } = require('metro-config');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
 const MetroSymlinksResolver = require('@rnx-kit/metro-resolver-symlinks');
-
+const { getResolveRequest } = require('./metro-resolver');
 module.exports = (async () => {
   const {
     resolver: { sourceExts, assetExts },
@@ -37,5 +37,13 @@ module.exports = (async () => {
     }
   );
   // config.resolver.resolveRequest = MetroSymlinksResolver();
+  config.resolver.resolveRequest = getResolveRequest([
+    '',
+    'ts',
+    'tsx',
+    'js',
+    'jsx',
+    'json',
+  ]);
   return config;
 })();

@@ -2,7 +2,11 @@ import * as metroResolver from 'metro-resolver';
 import type { MatchPath } from 'tsconfig-paths';
 import { createMatchPath, loadConfig } from 'tsconfig-paths';
 import * as chalk from 'chalk';
-import { CachedInputFileSystem, ResolverFactory } from 'enhanced-resolve';
+import {
+  CachedInputFileSystem,
+  ResolverFactory,
+  Resolver,
+} from 'enhanced-resolve';
 import { dirname, join } from 'path';
 import * as fs from 'fs';
 import { workspaceRoot } from '@nrwl/devkit';
@@ -195,7 +199,7 @@ function getMatcher(debug: boolean) {
  * It is inspired form https://github.com/vjpr/pnpm-expo-example/blob/main/packages/pnpm-expo-helper/util/make-resolver.js.
  */
 let resolver;
-function getPnpmResolver(extensions: string[]) {
+function getPnpmResolver(extensions: string[]): Resolver {
   if (!resolver) {
     const fileSystem = new CachedInputFileSystem(fs, 4000);
     resolver = ResolverFactory.createResolver({
