@@ -1,6 +1,7 @@
 const { withNxMetro } = require('@nrwl/react-native');
 const { getDefaultConfig } = require('metro-config');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
+const MetroSymlinksResolver = require('@rnx-kit/metro-resolver-symlinks');
 
 module.exports = (async () => {
   const {
@@ -26,7 +27,7 @@ module.exports = (async () => {
     {
       // Change this to true to see debugging info.
       // Useful if you have issues resolving modules
-      debug: false,
+      debug: true,
       // all the file extensions used for imports other than 'ts', 'tsx', 'js', 'jsx', 'json'
       extensions: [],
       // the project root to start the metro server
@@ -35,6 +36,6 @@ module.exports = (async () => {
       watchFolders: [],
     }
   );
-
+  config.resolver.resolveRequest = MetroSymlinksResolver();
   return config;
 })();
