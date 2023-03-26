@@ -47,6 +47,7 @@ export function getResolveRequest(extensions: string[]) {
       ) ||
       pnpmResolver(extensions, context, realModuleName, debug);
     if (resolvedPath) {
+      console.log('Resolved: ', realModuleName, 'Path: ', resolvedPath);
       return resolvedPath;
     }
     throw new Error(`Cannot resolve ${chalk.bold(realModuleName)}`);

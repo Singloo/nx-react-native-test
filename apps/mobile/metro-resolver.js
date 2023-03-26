@@ -36,6 +36,7 @@ function getResolveRequest(extensions) {
             tsconfigPathsResolver(context, extensions, realModuleName, platform, debug) ||
             pnpmResolver(extensions, context, realModuleName, debug);
         if (resolvedPath) {
+            console.log('Resolved: ', realModuleName, 'Path: ', resolvedPath);
             return resolvedPath;
         }
         throw new Error("Cannot resolve ".concat(chalk.bold(realModuleName)));

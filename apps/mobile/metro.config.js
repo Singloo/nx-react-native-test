@@ -3,12 +3,19 @@ const { getDefaultConfig } = require('metro-config');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
 const MetroSymlinksResolver = require('@rnx-kit/metro-resolver-symlinks');
 const { getResolveRequest } = require('./metro-resolver');
+// const exclusionList = require('metro-config/src/defaults/exclusionList');
+const path = require('path');
 module.exports = (async () => {
   const {
     resolver: { sourceExts, assetExts },
   } = await getDefaultConfig();
   const config = withNxMetro(
     {
+      maxWorkers: 1,
+      nodeModulesPaths: [
+        path.resolve(__dirname, '..', 'node_modules'),
+        'node_modules',
+      ],
       transformer: {
         getTransformOptions: async () => ({
           transform: {
@@ -21,7 +28,11 @@ module.exports = (async () => {
       resolver: {
         assetExts: assetExts.filter((ext) => ext !== 'svg'),
         sourceExts: [...sourceExts, 'svg'],
-        blockList: exclusionList([/^(?!.*node_modules).*\/dist\/.*/]),
+        blockList: exclusionList([
+          /^(?!.*node_modules).*\/dist\/.*/,
+          /.*\/default\/.*/,
+          /.*\/\.cache\/.*/,
+        ]),
       },
     },
     {
