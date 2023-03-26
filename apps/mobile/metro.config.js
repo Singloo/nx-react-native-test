@@ -36,6 +36,6 @@ module.exports = (async () => {
       watchFolders: [],
     }
   );
-  config.resolver.resolveRequest = MetroSymlinksResolver();
+  // config.resolver.resolveRequest = MetroSymlinksResolver();
   return config;
 })();

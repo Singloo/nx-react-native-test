@@ -11,11 +11,6 @@ import {
   Linking,
 } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import styled from 'styled-components/native';
-
-const StyledText = styled.Text`
-  color: red;
-`;
 
 export const App = () => {
   const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
@@ -33,7 +28,6 @@ export const App = () => {
           style={styles.scrollView}
         >
           <View style={styles.section}>
-            <StyledText>{'Test test'}</StyledText>
             <Text style={styles.textLg}>Hello there,</Text>
             <Text style={[styles.textXL, styles.appTitleText]} testID="heading">
               Welcome Mobile 👋
